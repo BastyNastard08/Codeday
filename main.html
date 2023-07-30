@@ -1,211 +1,277 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <style>
-        .modal {
-            display: none;
-            position: fixed;
-            top: 50;
-            left: 700px;
-            width: 20%;
-            height: 20%;
-            background-color: rgba(0, 0, 0, 0.6);
-            z-index: 3;
-        }
-        .modal-content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            padding: 20px;
-            background-color: #fff;
-            text-align: center;
-            border-radius: 8px;
-            z-index: 4;
-        }
-        .cross-mark {
-            display: flex;
-            justify-content: flex-end;
-            font-size: 72px;
-            margin-left: 95%;
-            width: fit-content;
-        }
-        body {
-            margin: 0;
-            overflow: hidden;
-            font-family: 'Pixeltype';
-        }
-        .planet {
-            transition: transform 0.3s ease;
-            transform-origin: center center;
-        }
-     .zoomed {
-            position: fixed;
-            top: 140;
-            left: 0;
-            width: 200;
-            height: 200;
-            z-index: 5;
-            cursor: pointer;
-        }
-        .planet:hover {
-            transform: scale(1.25);
-        }
-        #myVideo {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: -1;
-        }
-        .container {
-            display: flex;
-            align-items: center;
-            overflow-x: auto;
-            height: 100vh;
-            padding: 40px;
-            scroll-snap-type: x mandatory;
-        }
-        .planets {
-            display: flex;
-            flex-direction: row;
-            flex-wrap: nowrap;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-        }
-        .image1 {
-            width: 300px;
-        }
-        .planet-img {
-            width: 400px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            
-        }
-        .planet-text {
-            font-size: 60px;
-            color: white;
-        }
+      .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8); /* Black background with opacity */
+        z-index: 1;
+      }
+      .modal-content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-left: 100px;
+        transform: translate(-50%, -50%);
+        padding: 20px;
+        background-color: #fff;
+        text-align: center;
+        border-radius: 8px;
+        z-index: 2;
+      }
+      .cross-mark {
+        display: flex;
+        justify-content: flex-end;
+        font-size: 72px;
+        margin-left: 95%;
+        width: fit-content;
+      }
+      body {
+        margin: 0;
+        overflow: hidden;
+        font-family: "Pixeltype";
+      }
+      .planet {
+        transition: transform 0.3s ease;
+        transform-origin: center center;
+      }
+      .zoomed {
+        position: fixed;
+        top: 140;
+        left: 0;
+        width: 200;
+        height: 200;
+        z-index: 5;
+        cursor: pointer;
+      }
+      .planet:hover {
+        transform: scale(1.25);
+      }
+      #myVideo {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: -1;
+      }
+      .container {
+        display: flex;
+        align-items: center;
+        overflow-x: auto;
+        height: 100vh;
+        padding: 40px;
+        scroll-snap-type: x mandatory;
+      }
+      .planets {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+      }
+      .image1 {
+        width: 300px;
+      }
+      .planet-img {
+        width: 400px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .planet-text {
+        font-size: 60px;
+        color: white;
+      }
     </style>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <video class="bgvid" autoplay muted loop id="myVideo">
-        <source src="pexels_videos_2611250 (2160p).mp4" type="video/mp4">
+      <source src="pexels_videos_2611250 (2160p).mp4" type="video/mp4" />
     </video>
 
     <div class="container">
-        <div class="planets">
-            <div class="planet">
-                <div class="planet-img">
-                    <img class="planet-img mercury" style="scale: 0.3;" src="mercury.png" alt="Mercury" onclick="showModal('mercury')">
-                </div>
-            <p class="planet-text">Mercury</p>
-
-                </div>
-            <div class="planet">
-                <div class="planet-img">
-                    <img class="planet-img venus" style="scale: 0.6;" src="Venus-PNG-Clipart.png" alt="Venus" onclick="showModal('venus')">
-                </div>
-                <p class="planet-text">Venus</p>
-            </div>
-            <div class="planet">
-                <div class="planet-img">
-                    <img class="planet-img earth" style="scale: 0.6;" src="earth.png" alt="Earth" onclick="showModal('earth')">
-                </div>
-                <p class="planet-text">Earth</p>
-            </div>
-            <div class="planet">
-                <div class="planet-img">
-                    <img class="planet-img mars" style="scale: 0.5;" src="mars.png" alt="Mars" onclick="showModal('mars')">
-                </div>
-                <p class="planet-text">Mars</p>
-            </div>
-            <div class="planet">
-                <div class="planet-img">
-                    <img class="planet-img jupiter" style="scale: 1; padding-right: 100px;" src="jupiter.png" alt="Mars" onclick="showModal('jupiter')">
-                </div>
-                <p class="planet-text">Jupiter</p>
-            </div>
-            <div class="planet">
-                <div class="planet-img">
-                    <img class="planet-img saturn" style="scale: 1;padding-left: 100px;" src="saturn.png" alt="Mars" onclick="showModal('saturn')">
-                </div>
-                <p class="planet-text">Saturn</p>
-            </div>
-            <div class="planet">
-                <div class="planet-img">
-                    <img class="planet-img uranus" style="scale: 0.6;padding-left: 100px;" src="uranus.png" alt="Mars" onclick="showModal('uranus')">
-                </div>
-                <p class="planet-text">Uranus</p>
-            </div>
-            <div class="planet">
-                <div class="planet-img">
-                    <img class="planet-img neptune" style="scale: 0.6;padding-left: 100px;" src="neptune.png" alt="Mars" onclick="showModal('neptune')">
-                </div>
-                <p class="planet-text">Neptune</p>
-            </div>
-            <!-- Add more planets here as needed -->
-
-            <div class="modal" id="planetModal">
-                <div class="modal-content">
-                    <div class="cross-mark" id="crossMark">X</div>
-                    <video id="planetVideo" controls height="500">
-                        <source src="" type="video/mp4">
-                    </video>
-                </div>
-            </div>
-
-            <script>
-                function showModal(planetName) {
-        const modal = document.getElementById("planetModal");
-        const crossMark = document.getElementById("crossMark");
-        const planetVideo = document.getElementById("planetVideo");
-        const planetElement = document.querySelector(`.${planetName}`);
-        const planetImg = planetElement.querySelector(".planet-img img");
-        const planetsContainer = document.querySelector(".planets");
-
-        // Show the modal
-        modal.style.display = "block";
-
-        // Set the clicked planet to full size
-        planetElement.classList.add("zoomed");
-
-        if (planetName == "saturn") {
-        planetVideo.src = "Sequence 03.mp4";
-        planetVideo.play();}
-
-        // Disable scrolling while the modal is open
-        document.body.style.overflow = "hidden";
-
-        // Close the modal when clicking outside the video or on the modal
-        crossMark.onclick = function () {
-            closeModal(planetElement, planetImg, planetVideo, modal);
-        };
-    }
-
-    function closeModal(planetElement, planetImg, planetVideo, modal) {
-        // Hide the modal
-        modal.style.display = "none";
-
-        // Reset styles to normal view
-        planetElement.classList.remove("zoomed");
-
-        // Pause and reset the video
-        planetVideo.pause();
-        planetVideo.currentTime = 0;
-
-        // Enable scrolling again
-        document.body.style.overflow = "auto";
-    }
-            </script>
+      <div class="planets">
+        <div class="planet">
+          <div class="planet-img">
+            <img
+              class="planet-img mercury"
+              style="scale: 0.3"
+              src="mercury.png"
+              alt="Mercury"
+              onclick="showModal('mercury')"
+            />
+          </div>
+          <p class="planet-text">Mercury</p>
         </div>
+        <div class="planet">
+          <div class="planet-img">
+            <img
+              class="planet-img venus"
+              style="scale: 0.6"
+              src="Venus-PNG-Clipart.png"
+              alt="Venus"
+              onclick="showModal('venus')"
+            />
+          </div>
+          <p class="planet-text">Venus</p>
+        </div>
+        <div class="planet">
+          <div class="planet-img">
+            <img
+              class="planet-img earth"
+              style="scale: 0.6"
+              src="earth.png"
+              alt="Earth"
+              onclick="showModal('earth')"
+            />
+          </div>
+          <p class="planet-text">Earth</p>
+        </div>
+        <div class="planet">
+          <div class="planet-img">
+            <img
+              class="planet-img mars"
+              style="scale: 0.5"
+              src="mars.png"
+              alt="Mars"
+              onclick="showModal('mars')"
+            />
+          </div>
+          <p class="planet-text">Mars</p>
+        </div>
+        <div class="planet">
+          <div class="planet-img">
+            <img
+              class="planet-img jupiter"
+              style="scale: 1; padding-right: 100px"
+              src="jupiter.png"
+              alt="Mars"
+              onclick="showModal('jupiter')"
+            />
+          </div>
+          <p class="planet-text">Jupiter</p>
+        </div>
+        <div class="planet">
+          <div class="planet-img">
+            <img
+              class="planet-img saturn"
+              style="scale: 1.5; padding-left: 100px"
+              src="saturn.png"
+              alt="Mars"
+              onclick="showModal('saturn')"
+            />
+          </div>
+          <p class="planet-text">Saturn</p>
+        </div>
+        <div class="planet">
+          <div class="planet-img">
+            <img
+              class="planet-img uranus"
+              style="scale: 0.6; padding-left: 400px"
+              src="uranus.png"
+              alt="Mars"
+              onclick="showModal('uranus')"
+            />
+          </div>
+          <p class="planet-text">Uranus</p>
+        </div>
+        <div class="planet">
+          <div class="planet-img">
+            <img
+              class="planet-img neptune"
+              style="scale: 0.6; padding-left: 100px"
+              src="neptune.png"
+              alt="Mars"
+              onclick="showModal('neptune')"
+            />
+          </div>
+          <p class="planet-text">Neptune</p>
+        </div>
+        <!-- Add more planets here as needed -->
+
+        <div class="modal" id="planetModal">
+          <div class="modal-content">
+            <div class="cross-mark" id="crossMark">×</div>
+            <video id="planetVideo" controls height="500">
+              <source src="" type="video/mp4" />
+            </video>
+          </div>
+        </div>
+
+        <script>
+          function showModal(planetName) {
+            const modal = document.getElementById("planetModal");
+            const crossMark = document.getElementById("crossMark");
+            const planetVideo = document.getElementById("planetVideo");
+            const planetElement = document.querySelector(`.${planetName}`);
+            const planetImg = planetElement.querySelector(".planet-img img");
+            const planetsContainer = document.querySelector(".planets");
+
+            // Show the modal
+            modal.style.display = "block";
+
+            // Set the clicked planet to full size
+            planetElement.classList.add("zoomed");
+
+            if (planetName == "saturn") {
+              planetVideo.src = "Sequence 03.mp4";
+              planetVideo.play();
+            } else {
+              planetVideo.src = "";
+            }
+
+            const elements = document.getElementsByClassName("planet-img");
+
+            // for (let i = 0; i < elements.length; i++) {
+            //   const image = elements[i];
+            //   if (!image.classList.contains(planetName)) {
+            //     console.log(image.classList);
+            //     image.style.display = "none";
+            //   }
+            // }
+
+            // Disable scrolling while the modal is open
+            document.body.style.overflow = "hidden";
+
+            // Close the modal when clicking outside the video or on the modal
+            crossMark.onclick = function () {
+              closeModal(planetElement, planetImg, planetVideo, modal);
+            };
+          }
+
+          function closeModal(planetElement, planetImg, planetVideo, modal) {
+            // Hide the modal
+            modal.style.display = "none";
+
+            // Reset styles to normal view
+            planetElement.classList.remove("zoomed");
+
+            // Pause and reset the video
+            planetVideo.pause();
+            planetVideo.currentTime = 0;
+
+            // Enable scrolling again
+            document.body.style.overflow = "auto";
+
+            const elements = document.getElementsByClassName("planet-img");
+            for (let i = 0; i < elements.length; i++) {
+              const image = elements[i];
+              image.style.display = "flex";
+            }
+          }
+        </script>
+      </div>
     </div>
-</body>
+  </body>
 </html>
