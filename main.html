@@ -30,6 +30,7 @@
         font-size: 72px;
         margin-left: 95%;
         width: fit-content;
+        cursor: pointer;
       }
       body {
         margin: 0;
@@ -95,10 +96,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
-  <body>
+  <body class="content">
     <video class="bgvid" autoplay muted loop id="myVideo">
       <source src="pexels_videos_2611250 (2160p).mp4" type="video/mp4" />
     </video>
+
+    <h1 style="color:aliceblue">Welcome Back Wanderer2318</h1>
 
     <div class="container">
       <div class="planets">
@@ -166,7 +169,7 @@
           <div class="planet-img">
             <img
               class="planet-img saturn"
-              style="scale: 1.5; padding-left: 100px"
+              style="scale: 1.2; padding-left: 50px"
               src="saturn.png"
               alt="Mars"
               onclick="showModal('saturn')"
@@ -178,7 +181,7 @@
           <div class="planet-img">
             <img
               class="planet-img uranus"
-              style="scale: 0.6; padding-left: 400px"
+              style="scale: 0.6; padding-left: 0px"
               src="uranus.png"
               alt="Mars"
               onclick="showModal('uranus')"
@@ -230,6 +233,34 @@
             } else {
               planetVideo.src = "";
             }
+            if (planetName == "venus"){
+                planetVideo.src = "barbie final.mp4";
+                planetVideo.play();
+            }
+            if (planetName == "mars"){
+                planetVideo.src = "mars (2).mp4";
+                planetVideo.play();
+            }
+            if (planetName == "neptune"){
+                planetVideo.src = "neptune.mp4";
+                planetVideo.play();
+            }
+            if (planetName == "uranus"){
+                planetVideo.src = "template_1.mp4";
+                planetVideo.play();
+            }
+            if (planetName == "jupiter"){
+                planetVideo.src = "jupiter (2).mp4";
+                planetVideo.play()
+            }
+            if (planetName == "earth"){
+                planetVideo.src = "EARTH.mp4";
+                planetVideo.play();
+            }
+            if (planetName == "mercury"){
+                planetVideo.src = "mercuryfin.mp4";
+                planetVideo.play();
+            }
 
             const elements = document.getElementsByClassName("planet-img");
 
@@ -273,5 +304,8 @@
         </script>
       </div>
     </div>
+    <audio id="backgroundMusic" loop autoplay>
+        <source src="interstallar_theme.mp3" type="audio/mpeg">
+      </audio>
   </body>
 </html>
